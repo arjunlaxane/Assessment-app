@@ -1,0 +1,40 @@
+.logo {
+  width: 100%;
+  height: 40vmax;
+  background-size: contain;
+}
+
+#appName {
+  padding: 0.5vmax;
+  padding-top: 1.5vmax;
+  color: rgb(241, 241, 241);
+}
+
+.homwNavLink {
+  color: azure;
+  font-size: 1.3vmax;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.linkDiv {
+  display: flex;
+}
+
+/* .sub-linkDiv { */
+/* width: 80vw; */
+/* } */
+#copyright {
+  font-size: 1.2vmax;
+  margin: 1vmax;
+}
+
+#userNavName {
+  color: rgb(200, 255, 0);
+}
+
+@media only screen and (max-width: 768px) {
+  #copyright {
+    font-size: 1.5vmax;
+  }
+}

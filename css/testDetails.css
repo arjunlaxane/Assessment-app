@@ -1,0 +1,17 @@
+.testDetailInputTag {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5vmax;
+  border-radius: 0.5vmax;
+  padding: 1vmax;
+}
+
+@media only screen and (max-width: 570px) {
+  .testBtn {
+    display: flex;
+    flex-direction: column;
+  }
+  .testBtn > button {
+    margin-top: 2vmax;
+  }
+}

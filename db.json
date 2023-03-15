@@ -1,0 +1,96 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "john doe",
+      "email": "john@gmail.com",
+      "password": "12345678",
+      "isAdmin": false
+    },
+    {
+      "id": 2,
+      "name": "Marry doe",
+      "email": "marry@gmail.com",
+      "password": "12345678",
+      "isAdmin": false
+    },
+    {
+      "name": "Arjun",
+      "email": "arjun@gmail.com",
+      "password": "123456789",
+      "isAdmin": true,
+      "id": 3
+    },
+    {
+      "name": "arun",
+      "email": "arun@gmail.com",
+      "password": "123",
+      "id": 4,
+      "isAdmin": false
+    },
+    {
+      "name": "shan",
+      "email": "shan@gmail.com",
+      "password": "123",
+      "isAdmin": "false",
+      "id": 5
+    }
+  ],
+
+  "tests": [
+    {
+      "id": 1,
+      "name": "Test 1",
+      "topic": "Javascript",
+      "questions": [
+        {
+          "id": 1,
+          "question": "console.log(a)",
+          "answers": [
+            { "text": "undefined", "correct": false },
+            { "text": "a is not defined", "correct": true },
+            { "text": "syntax error", "correct": false },
+            { "text": "Will show output", "correct": false }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "console.log(a); var a;",
+          "answers": [
+            { "text": "typeerror", "correct": false },
+            { "text": "undefined", "correct": true },
+            { "text": "reference error", "correct": false },
+            { "text": "syntax error", "correct": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Test 2",
+      "topic": "javascript",
+      "questions": [
+        {
+          "id": 1,
+          "question": "console.log(a)",
+          "answers": [
+            { "text": "undefined", "correct": false },
+            { "text": "a is not defined", "correct": true },
+            { "text": "syntax error", "correct": false },
+            { "text": "Will show output", "correct": false }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "console.log(a); var a;",
+          "answers": [
+            { "text": "typeerror", "correct": false },
+            { "text": "undefined", "correct": true },
+            { "text": "reference error", "correct": false },
+            { "text": "syntax error", "correct": false }
+          ]
+        }
+      ]
+    }
+  ]
+}

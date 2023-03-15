@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="../../bootstrap-4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/quiz.css" />
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="../../bootstrap-4/js/bootstrap.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="../../js/quiz.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h5 class="card-text float-right font-weight-bold">
+        Time : <br />
+        (00: <span id="time">00</span>)
+      </h5>
+
+      <!-- first page -->
+
+      <div
+        class="d-flex justify-content-center align-items-center container-fluid"
+      >
+        <div class="col-md-8 p-4">
+          <div class="card-body">
+            <!-- <h5 class="card-text float-right font-weight-body">Quiz</h5> -->
+            <!-- <h5>(<span id="number">0</span> of 5)</h5> -->
+          </div>
+
+          <div class="start_page">
+            <h3 class="text-center mb-5" id="getTestTopic"></h3>
+            <p style="text-align: center" class="mb-4">All the best</p>
+            <button class="btn btn-success d-flex mx-auto mt-4" id="Quizbtn">
+              Start the quiz
+            </button>
+          </div>
+
+          <!-- quiz page -->
+
+          <div
+            class="d-flex flex-column justify-content-center align-items-center main"
+          >
+            <div class="card-body">
+              <h5 id="question"></h5>
+            </div>
+
+            <div id="options">
+              <div id="all_Options">
+                <input type="radio" />
+                <h5 id="Option_content"></h5>
+              </div>
+
+              <div
+                class="d-flex justify-content-around align-items-center container"
+              >
+                <button id="prev" class="btn btn-danger">Previous</button>
+                <button id="next" class="btn btn-success">Next</button>
+              </div>
+            </div>
+
+            <div>
+              <button id="finish" class="btn btn-success">Finish</button>
+            </div>
+          </div>
+
+          <!-- Result page -->
+
+          <div id="Result">
+            <h3>Marks: <span id="marks"></span></h3>
+            <h3><span id="correct-answer"></span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+.test-container {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  background-color: aqua;
+  padding: 3vmax;
+  /* position: absolute; */
+  /* margin-left: 28vmax; */
+  /* text-align: center; */
+  
+}
+
+#view {
+  color: red;
+  margin-left: 10vmax;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <!-- <link rel="stylesheet" href="./bootstrap-4/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="./bootstrap-4/js/bootstrap.min.js"
+      type="text/javascript"
+    ></script> -->
+    <link rel="stylesheet" href="../css/testDetails.css" />
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../bootstrap-4/css/bootstrap.min.css" />
+
+    <script
+      src="./bootstrap-4/js/bootstrap.min.js"
+      type="text/javascript"
+    ></script>
+
+    <script src="../js/createTest.js"></script>
+  </head>
+  <body>
+    <div class="d-flex justify-content-center flex-column container mt-3">
+      <input
+        class="testDetailInputTag mb-3"
+        type="number"
+        placeholder="Enter question number"
+        id="questionNumber"
+      />
+      <input
+        class="testDetailInputTag mb-3"
+        type="text"
+        placeholder="Write your question"
+        id="writeQuestion"
+        class="mt-3"
+      />
+      <input
+        class="testDetailInputTag mb-3"
+        type="text"
+        placeholder="Write answer.."
+        id="answer"
+        class="mt-3"
+      />
+
+      <span id="newInput">
+        <input
+          class="testDetailInputTag mb-3"
+          type="text"
+          name="option_1"
+          placeholder="Add option"
+          id="option_1"
+          class="mt-3"
+        />
+
+        <input
+          class="testDetailInputTag mb-3"
+          type="text"
+          name="option_2"
+          placeholder="Add option"
+          id="option_2"
+        />
+        <input
+          class="testDetailInputTag mb-3"
+          type="text"
+          name="option_3"
+          placeholder="Add option"
+          id="option_3"
+        />
+        <input
+          class="testDetailInputTag mb-3"
+          type="text"
+          name="option_4"
+          placeholder="Add option"
+          id="option_4"
+        />
+      </span>
+    </div>
+    <div
+      class="d-flex justify-content-around align-items-center p-3 bg-white mt-1 testBtn"
+    >
+      <button
+        class="btn btn-primary d-flex align-items-center btn-danger"
+        type="button"
+      >
+        <i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous
+      </button>
+
+      <button
+        class="btn btn-primary border-success align-items-center btn-danger"
+        type="button"
+        id="removeOption"
+      >
+        Remove options<i class="fa-regular fa-plus"></i>
+      </button>
+
+      <button
+        class="btn btn-primary border-success align-items-center btn-success"
+        type="button"
+        id="addOption"
+      >
+        Add more options<i class="fa-regular fa-plus"></i>
+      </button>
+
+      <button
+        class="btn btn-primary border-success align-items-center btn-success"
+        type="button"
+        id="addQuestion"
+      >
+        Add next question<i class="fa fa-angle-right ml-2"></i>
+      </button>
+      <button
+        class="btn btn-primary border-success align-items-center btn-success"
+        type="button"
+        id="finish"
+      >
+        Finish<i class="fa fa-angle-right ml-2"></i>
+      </button>
+    </div>
+  </body>
+</html>
+
+<!-- 
+
+
+  "tests1":[
+
+{"test1":[]},{}
+]
+
+
+let tests=[{"test1":[{a:1,b:2,c:3},{d:2,e:5,f:8}]},{"test2":[{a:1,b:2,c:3},{d:2,e:5,f:8}]}];
+
+ -->

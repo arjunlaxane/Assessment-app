@@ -1,0 +1,11 @@
+#myInput {
+  width: 25vmax;
+  margin: 1vmax;
+  height: 3vmax;
+  padding: 2vmax;
+  padding-left: 6vmax;
+  margin-left: 10vmax;
+  font-size: 1.5vmax;
+  border-radius: 0.5vmax;
+  background-color: rgba(232, 238, 241, 0.692);
+}

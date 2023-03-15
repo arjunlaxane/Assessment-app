@@ -1,0 +1,23 @@
+#options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#options > button {
+  margin: 1vmax;
+  width: 50vmax;
+  height: 3vmax;
+  border-radius: 0.5vmax;
+}
+
+#all_Options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#Option_content {
+  margin-left: 1.5vmax;
+}
