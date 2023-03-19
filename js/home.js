@@ -13,6 +13,7 @@ $(document).ready(function () {
     $('#testDetailsHome').css({ display: 'block' });
     $('#allTestsHome').css({ display: 'block' });
     $('#testResultsHome').css({ display: 'block' });
+    $('#allUser').css({ display: 'block' });
   } else if (loginVal === 'true' && admin === 'false') {
     $('#userNavName').html(`<span>Welcome ${userName}<span>`);
     $('#login').css({ display: 'none' });
@@ -21,6 +22,7 @@ $(document).ready(function () {
     $('#testDetailsHome').css({ display: 'none' });
     $('#allTestsHome').css({ display: 'none' });
     $('#testResultsHome').css({ display: 'none' });
+    $('#allUser').css({ display: 'none' });
     $('#logout').append().html('<span class="m-1 homwNavLink" >Logout</span>');
   } else {
     $('#signup').css({ display: 'block' });
@@ -29,6 +31,7 @@ $(document).ready(function () {
     $('#giveTest').css({ display: 'none' });
     $('#testDetailsHome').css({ display: 'none' });
     $('#allTestsHome').css({ display: 'none' });
+    $('#allUser').css({ display: 'none' });
   }
 });
 

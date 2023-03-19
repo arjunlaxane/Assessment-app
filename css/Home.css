@@ -3,18 +3,8 @@
   height: 40vmax;
   background-size: contain;
 }
-
-#appName {
-  padding: 0.5vmax;
-  padding-top: 1.5vmax;
-  color: rgb(241, 241, 241);
-}
-
-.homwNavLink {
-  color: azure;
-  font-size: 1.3vmax;
-  text-decoration: none;
-  cursor: pointer;
+a {
+  text-decoration: none !important;
 }
 
 .linkDiv {
@@ -28,7 +18,18 @@
   font-size: 1.2vmax;
   margin: 1vmax;
 }
+#appName {
+  padding: 0.5vmax;
+  padding-top: 1.5vmax;
+  color: rgb(241, 241, 241);
+}
 
+.homwNavLink {
+  color: azure;
+  font-size: 1.3vmax;
+  text-decoration: none;
+  cursor: pointer;
+}
 #userNavName {
   color: rgb(200, 255, 0);
 }

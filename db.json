@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "name": "john doe",
+      "name": "John doe",
       "email": "john@gmail.com",
       "password": "12345678",
       "isAdmin": false
@@ -18,8 +18,8 @@
       "name": "Arjun",
       "email": "arjun@gmail.com",
       "password": "123456789",
-      "isAdmin": true,
-      "id": 3
+      "id": 3,
+      "isAdmin": true
     },
     {
       "name": "arun",
@@ -29,68 +29,108 @@
       "isAdmin": false
     },
     {
-      "name": "shan",
-      "email": "shan@gmail.com",
+      "name": "shan123",
+      "email": "shan123@gmail.com",
       "password": "123",
-      "isAdmin": "false",
+      "isAdmin": false,
       "id": 5
     }
   ],
-
   "tests": [
     {
-      "id": 1,
-      "name": "Test 1",
-      "topic": "Javascript",
-      "questions": [
-        {
-          "id": 1,
-          "question": "console.log(a)",
-          "answers": [
-            { "text": "undefined", "correct": false },
-            { "text": "a is not defined", "correct": true },
-            { "text": "syntax error", "correct": false },
-            { "text": "Will show output", "correct": false }
-          ]
-        },
-        {
-          "id": 2,
-          "question": "console.log(a); var a;",
-          "answers": [
-            { "text": "typeerror", "correct": false },
-            { "text": "undefined", "correct": true },
-            { "text": "reference error", "correct": false },
-            { "text": "syntax error", "correct": false }
-          ]
-        }
-      ]
+      "test_Topic": "Country",
+      "test_Seconds": "100000000000",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Test 2",
-      "topic": "javascript",
-      "questions": [
+      "question": "What is the capital of France?",
+      "answers": [
         {
-          "id": 1,
-          "question": "console.log(a)",
-          "answers": [
-            { "text": "undefined", "correct": false },
-            { "text": "a is not defined", "correct": true },
-            { "text": "syntax error", "correct": false },
-            { "text": "Will show output", "correct": false }
-          ]
+          "option": "London",
+          "correct": 0
         },
         {
-          "id": 2,
-          "question": "console.log(a); var a;",
-          "answers": [
-            { "text": "typeerror", "correct": false },
-            { "text": "undefined", "correct": true },
-            { "text": "reference error", "correct": false },
-            { "text": "syntax error", "correct": false }
-          ]
+          "option": "Paris",
+          "correct": "1"
+        },
+        {
+          "option": "Berlin",
+          "correct": 0
+        },
+        {
+          "option": "Madrid",
+          "correct": 0
+        },
+        {
+          "option": "Vatican",
+          "correct": 0
+        },
+        {
+          "option": "Option not added",
+          "correct": 0
         }
-      ]
+      ],
+      "id": 2
+    },
+    {
+      "question": "What is the largest country in the world?",
+      "answers": [
+        {
+          "option": "Russia",
+          "correct": "1"
+        },
+        {
+          "option": "Canada",
+          "correct": 0
+        },
+        {
+          "option": "China",
+          "correct": 0
+        },
+        {
+          "option": "USA",
+          "correct": 0
+        },
+        {
+          "option": "India",
+          "correct": 0
+        },
+        {
+          "option": "Brazil",
+          "correct": 0
+        }
+      ],
+      "id": 3
+    },
+    {
+      "question": "What is the capital of India?",
+      "answers": [
+        {
+          "option": "Chennai",
+          "correct": 0
+        },
+        {
+          "option": "Banglore",
+          "correct": 0
+        },
+        {
+          "option": "Hyderabad",
+          "correct": 0
+        },
+        {
+          "option": "Delhi",
+          "correct": "1"
+        },
+        {
+          "option": "Option not added",
+          "correct": 0
+        },
+        {
+          "option": "Option not added",
+          "correct": 0
+        }
+      ],
+      "id": 4
     }
   ]
 }

@@ -15,3 +15,18 @@
     margin-top: 2vmax;
   }
 }
+#appName {
+  padding: 0.5vmax;
+  padding-top: 1.5vmax;
+  color: rgb(241, 241, 241);
+}
+
+.homwNavLink {
+  color: azure;
+  font-size: 1.3vmax;
+  text-decoration: none;
+  cursor: pointer;
+}
+#userNavName {
+  color: rgb(200, 255, 0);
+}

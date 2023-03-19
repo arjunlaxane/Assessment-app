@@ -1,62 +1,87 @@
-$(window).load(() => {
-  $(document).ready(function () {
-    let loginVal = localStorage.getItem('login');
-    let admin = localStorage.getItem('isAdmin');
+$(document).ready(function () {
+  let login = localStorage.getItem('login');
+  let isAdmin = localStorage.getItem('isAdmin');
+  let userName = localStorage.getItem('name');
 
-    if (loginVal === 'true' && admin === 'true') {
-      $.when($.getJSON('http://localhost:3000/users')).done(result => {
-        $('#searchBar').on('keyup', function () {
-          var value = $(this).val().toLowerCase();
+  if (login && isAdmin) {
+    $('#userNavName').html(`<span>Welcome ${userName}<span>`);
+    $('#logout').append().html('<span class="m-1 homwNavLink" >Logout</span>');
 
-          let filteredData = [];
+    $.ajax({
+      url: 'http://localhost:3000/users',
+      type: 'GET',
+      success: function (data) {
+        window.localStorage.setItem('user', JSON.stringify(data));
+      },
+    });
 
-          if (value != '') {
-            filteredData = result.filter(result => {
-              return result.name.toLowerCase().includes(value.toLowerCase());
-            });
+    var details = window.localStorage.getItem('user');
 
-            displayData(filteredData);
-          } else {
-            $('#filterData').css({ display: 'none' });
-          }
-        });
+    var parsedDetails = JSON.parse(details);
 
-        let displayData = result => {
-          let temp = '';
+    $.each(parsedDetails, function (index, ele) {
+      $('#myTable').append(`
+    <tr>
+            <td>${ele.id}</td>
 
-          for (let user of result) {
-            temp += user.name + '<br>';
+        <td>${ele.name}</td>
+        <td>${ele.email}</td>
+        <td><button class="btn btn-primary" id="deleteUser${ele.id}">Delete</button></td>
+            
+        </tr>`);
 
-            $('#filterData').append().html(temp);
-            // console.log(temp);
-          }
-        };
-
-        $.each(result, function (index, data) {
-          // console.log(index);
-          console.log(data.id, data.name, data.email);
-          $('<tr>').html(data.id).appendTo('#idTd');
-          $('<tr>').html(data.name).appendTo('#nameTd');
-          $('<tr>').html(data.email).appendTo('#emailTd');
+      $(`#deleteUser${ele.id}`).click(() => {
+        $.ajax({
+          url: `http://localhost:3000/users/${ele.id}`,
+          type: 'DELETE',
+          success: function (data) {
+            // console.log('done');
+            // setTimeout(() => {
+            window.location = 'Home.html';
+            // }, 1000);
+          },
         });
       });
+    });
 
-      // $(window).load(() => {
+    $('#searchBar').on('keyup', function () {
+      var value = $(this).val().toLowerCase();
+      $('table tbody tr').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  } else {
+    Toastify({
+      text: 'Access Denied',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'background-image:red',
+      },
+    }).showToast();
 
-      let userName = localStorage.getItem('name');
-
-      $('#userNavName').html(`<span>Welcome ${userName}<span>`);
-
-      $('#signup').css({ display: 'none' });
-      $('#login').css({ display: 'none' });
-      $('#logout')
-        .append()
-        .html('<span class="m-1 homwNavLink" >Logout</span>');
-    } else {
-      $('#signup').css({ display: 'block' });
-      $('#login').css({ display: 'block' });
-      $('#logout').css({ display: 'none' });
+    setTimeout(() => {
       window.location = 'Home.html';
-    }
+    }, 1000);
+  }
+
+  //logout
+
+  $('#logout').click(function () {
+    localStorage.removeItem('login');
+    localStorage.removeItem('name');
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('id');
+
+    setTimeout(() => {
+      window.location = 'Home.html';
+      $('#logout').css({ display: 'none' });
+    }, 1000);
   });
 });

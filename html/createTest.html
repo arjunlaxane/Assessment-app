@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>Pariksha|CreateTest</title>
     <!-- <link rel="stylesheet" href="./bootstrap-4/css/bootstrap.min.css" />
     <link
       rel="stylesheet"
@@ -37,15 +37,74 @@
     ></script>
 
     <script src="../js/createTest.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
+    <!-- navbar -->
+    <nav
+      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between mb-5"
+    >
+      <!-- Brand/logo -->
+
+      <!-- Links -->
+      <ul class="navbar-nav d-flex justify-content-around align-items-center">
+        <li class="nav-item mr-5">
+          <h2 id="appName">Pariksha</h2>
+        </li>
+        <li class="nav-item mr-5">
+          <b> <h4 id="userNavName"></h4></b>
+        </li>
+        <button
+          class="btn btn-primary"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#demo"
+        >
+          &#9776;
+        </button>
+      </ul>
+    </nav>
+
+    <div
+      class="offcanvas offcanvas-start"
+      style="background-color: #5647b9"
+      id="demo"
+    >
+      <div class="offcanvas-header">
+        <h2 id="appName">Pariksha</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <b>
+          <a href="../html/quiz.html" class="m-1 homwNavLink" id="giveTest"
+            >Give Test</a
+          ></b
+        >
+
+        <b>
+          <a
+            href="../html/allUsersList.html"
+            class="m-1 homwNavLink"
+            id="allUser"
+            >View all users</a
+          ></b
+        >
+
+        <b>
+          <span id="logout" class="homwNavLink"></span>
+        </b>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-center flex-column container mt-3">
-      <input
-        class="testDetailInputTag mb-3"
-        type="number"
-        placeholder="Enter question number"
-        id="questionNumber"
-      />
       <input
         class="testDetailInputTag mb-3"
         type="text"
@@ -53,45 +112,88 @@
         id="writeQuestion"
         class="mt-3"
       />
-      <input
-        class="testDetailInputTag mb-3"
-        type="text"
-        placeholder="Write answer.."
-        id="answer"
-        class="mt-3"
-      />
 
       <span id="newInput">
-        <input
-          class="testDetailInputTag mb-3"
-          type="text"
-          name="option_1"
-          placeholder="Add option"
-          id="option_1"
-          class="mt-3"
-        />
+        <div>
+          <input
+            class="testDetailInputTag mb-3"
+            type="text"
+            name="option_1"
+            placeholder="Write option 1"
+            id="option_1"
+            class="mt-3"
+          />
+          <label for="correct1">Right</label>
+          <input type="radio" value="1" id="correct1" name="answer1" />
+          <!-- <label for="incorrect1">Incorrect</label>
+          <input
+            type="radio"
+            value="0"
+            id="incorrect1"
+            name="answer1"
+            class="answer1"
+          /> -->
+        </div>
 
-        <input
-          class="testDetailInputTag mb-3"
-          type="text"
-          name="option_2"
-          placeholder="Add option"
-          id="option_2"
-        />
-        <input
-          class="testDetailInputTag mb-3"
-          type="text"
-          name="option_3"
-          placeholder="Add option"
-          id="option_3"
-        />
-        <input
-          class="testDetailInputTag mb-3"
-          type="text"
-          name="option_4"
-          placeholder="Add option"
-          id="option_4"
-        />
+        <div>
+          <input
+            class="testDetailInputTag mb-3"
+            type="text"
+            name="option_2"
+            placeholder="Write option 2"
+            id="option_2"
+          />
+          <label for="correct2">Right</label>
+          <input type="radio" value="1" id="correct2" name="answer2" />
+          <!-- <label for="incorrect2">Incorrect</label>
+          <input
+            type="radio"
+            value="0"
+            id="incorrect2"
+            name="answer2"
+            class="answer2"
+          /> -->
+        </div>
+
+        <div>
+          <input
+            class="testDetailInputTag mb-3"
+            type="text"
+            name="option_3"
+            placeholder="Write option 3"
+            id="option_3"
+          />
+          <label for="correct3">Right</label>
+          <input name="answer3" type="radio" value="1" id="correct3" />
+          <!-- <label for="incorrect3">Incorrect</label>
+          <input
+            type="radio"
+            name="answer3"
+            value="0"
+            id="incorrect3"
+            class="answer3"
+          /> -->
+        </div>
+
+        <div>
+          <input
+            class="testDetailInputTag mb-3"
+            type="text"
+            name="option_4"
+            placeholder="Write option 4"
+            id="option_4"
+          />
+          <label for="correct4">Right</label>
+          <input type="radio" value="1" id="correct4" name="answer4" />
+          <!-- <label for="incorrect4">Incorrect</label>
+          <input
+            type="radio"
+            value="0"
+            id="incorrect4"
+            name="answer4"
+            class="answer4"
+          /> -->
+        </div>
       </span>
     </div>
     <div

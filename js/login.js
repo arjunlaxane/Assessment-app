@@ -1,107 +1,109 @@
 $(document).ready(function () {
+  let login = localStorage.getItem('login');
+
+  if (login) {
+    window.location = 'Home.html';
+    return false;
+  }
+
   $.when($.getJSON('http://localhost:3000/users')).done(result => {
-    // console.log(result);
+    $('#login-btn').click(function () {
+      let email = $('#email').val();
+      let password = $('#password').val();
 
-    $(result).each(function (i, field) {
-      // console.log(field);
+      // event.stopImmediatePropagation();
+      event.preventDefault();
 
-      $('#login-btn').click(function () {
-        // event.stopImmediatePropagation();
-        event.preventDefault();
-        let email = $('#email').val();
-        let password = $('#password').val();
+      if (email === '' || password === '') {
+        Toastify({
+          text: 'Please enter details correctly',
+          duration: 1000,
+          newWindow: true,
+          close: true,
+          gravity: 'top',
+          position: 'right',
+          // stopOnFocus: true,
+          style: {
+            background: 'background-image:red',
+          },
+        }).showToast();
+        return false;
+      }
 
-        if (email === '' || password === '') {
-          Toastify({
-            text: 'Please enter details correctly',
-            duration: 1000,
-            newWindow: true,
-            close: true,
-            gravity: 'top',
-            position: 'right',
-            // stopOnFocus: true,
-            style: {
-              background: 'background-image:red',
-            },
-          }).showToast();
-        } else if (
-          field.email === email &&
-          field.password === password &&
-          field.isAdmin === true
-        ) {
-          let userName = field.name;
+      const findUser = result.find(
+        ele => email === ele.email && password === ele.password
+      );
+      console.log(findUser);
 
-          localStorage.setItem('id', field.id);
-          localStorage.setItem('name', userName);
-          localStorage.setItem('email', email);
-          localStorage.setItem('password', password);
-          localStorage.setItem('login', true);
-          localStorage.setItem('isAdmin', true);
+      if (!findUser) {
+        Toastify({
+          text: 'Invalid Credentials',
+          duration: 1000,
+          newWindow: true,
+          close: true,
+          gravity: 'top',
+          position: 'right',
+          stopOnFocus: true,
+          style: {
+            background: 'linear-gradient(to right, #00b09b, #96c93d)',
+          },
+        }).showToast();
+        return true;
+      }
 
-          Toastify({
-            text: 'Logged in sucessfully',
-            duration: 1000,
-            newWindow: true,
-            close: true,
-            gravity: 'top',
-            position: 'right',
-            stopOnFocus: true,
-            style: {
-              background: 'linear-gradient(to right, #00b09b, #96c93d)',
-            },
-          }).showToast();
+      if (findUser && findUser.isAdmin === true) {
+        let userName = findUser.name;
+        localStorage.setItem('id', findUser.id);
+        localStorage.setItem('name', userName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        localStorage.setItem('login', true);
+        localStorage.setItem('isAdmin', true);
 
-          setTimeout(() => {
-            window.location = 'Home.html';
-          }, 1000);
-        } else if (
-          field.email === email &&
-          field.password === password &&
-          field.isAdmin === false
-        ) {
-          let userName = field.name;
-          localStorage.setItem('id', field.id);
-          localStorage.setItem('name', userName);
-          localStorage.setItem('email', email);
-          localStorage.setItem('password', password);
-          localStorage.setItem('login', true);
-          localStorage.setItem('isAdmin', false);
+        Toastify({
+          text: 'Admin Logged in sucessfully',
+          duration: 1000,
+          newWindow: true,
+          close: true,
+          gravity: 'top',
+          position: 'right',
+          stopOnFocus: true,
+          style: {
+            background: 'linear-gradient(to right, #00b09b, #96c93d)',
+          },
+        }).showToast();
 
-          Toastify({
-            text: 'Logged in sucessfully',
-            duration: 1000,
-            newWindow: true,
-            close: true,
-            gravity: 'top',
-            position: 'right',
-            stopOnFocus: true,
-            style: {
-              background: 'linear-gradient(to right, #00b09b, #96c93d)',
-            },
-          }).showToast();
+        setTimeout(() => {
+          window.location = 'Home.html';
+        }, 1000);
+        return true;
+      } else if (findUser && findUser.isAdmin === false) {
+        let userName = findUser.name;
+        localStorage.setItem('id', findUser.id);
+        localStorage.setItem('name', userName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        localStorage.setItem('login', true);
+        localStorage.setItem('isAdmin', false);
 
-          setTimeout(() => {
-            window.location = 'Home.html';
-          }, 1000);
-        } else {
-          Toastify({
-            text: 'Incorrect Credentials',
-            duration: 1000,
-            newWindow: true,
-            close: true,
-            gravity: 'top',
-            position: 'right',
-            stopOnFocus: true,
-            style: {
-              background: 'brown',
-            },
-          }).showToast();
+        Toastify({
+          text: 'User Logged in sucessfully',
+          duration: 1000,
+          newWindow: true,
+          close: true,
+          gravity: 'top',
+          position: 'right',
+          stopOnFocus: true,
+          style: {
+            background: 'linear-gradient(to right, #00b09b, #96c93d)',
+          },
+        }).showToast();
 
-          setTimeout(() => {
-            window.location = 'login.html';
-          }, 1000);
-        }
-      });
+        setTimeout(() => {
+          window.location = 'Home.html';
+        }, 1000);
+        return true;
+      }
     });
   });
 });

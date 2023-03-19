@@ -53,53 +53,81 @@
       src="./bootstrap-4/js/bootstrap.min.js"
       type="text/javascript"
     ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
     <!-- navbar -->
 
-    <div>
-      <div
-        class="bg-dark p-1 linkDiv collapse"
-        id="navbarToggleExternalContent"
-      >
-        <div
-          class="d-flex flex-column align-items-center justify-content-center sub-linkDiv"
-        >
+    <nav
+      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between"
+    >
+      <!-- Brand/logo -->
+
+      <!-- Links -->
+      <ul class="navbar-nav d-flex justify-content-around align-items-center">
+        <li class="nav-item mr-5">
           <h2 id="appName">Pariksha</h2>
-          <h4 id="userNavName"></h4>
-
-          <a href="../html/login.html" class="m-1 homwNavLink" id="createTest"
-            >create Test</a
-          >
-          <a href="../html/register.html" class="m-1 homwNavLink" id="allTests"
-            >View Tests</a
-          >
-          <a
-            href="../html/register.html"
-            class="m-1 homwNavLink"
-            id="testResults"
-            >Test Result</a
-          >
-          <span id="logout" class="homwNavLink"></span>
-          <a href="" class="m-1 homwNavLink">Dropdown</a>
-        </div>
-      </div>
-
-      <!-- hamburger menu -->
-
-      <nav class="navbar navbar-dark bg-dark" id="hamburgerBtn">
+        </li>
+        <li class="nav-item mr-5">
+          <b> <h4 id="userNavName"></h4></b>
+        </li>
         <button
-          class="navbar-toggler"
+          class="btn btn-primary"
           type="button"
-          data-toggle="collapse"
-          data-target="#navbarToggleExternalContent"
-          aria-controls="navbarToggleExternalContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#demo"
         >
-          <span class="navbar-toggler-icon"></span>
+          &#9776;
         </button>
-      </nav>
+      </ul>
+    </nav>
+
+    <div
+      class="offcanvas offcanvas-start"
+      style="background-color: #5647b9"
+      id="demo"
+    >
+      <div class="offcanvas-header">
+        <h2 id="appName">Pariksha</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <b>
+          <a href="../html/quiz.html" class="m-1 homwNavLink" id="giveTest"
+            >Give Test</a
+          ></b
+        >
+
+        <b>
+          <a
+            href="../html/testDetails.html"
+            class="m-1 homwNavLink"
+            id="testDetailsHome"
+            >Create a test</a
+          ></b
+        >
+
+        <b>
+          <span id="logout" class="homwNavLink"></span>
+        </b>
+      </div>
     </div>
 
     <!-- all users -->
@@ -112,7 +140,6 @@
         class="text-center mb-5 col-sm-6"
         placeholder="Search here..."
       />
-      <p id="filterData"></p>
     </div>
     <div class="container">
       <table class="table">
@@ -121,16 +148,11 @@
             <th scope="col">User ID</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
 
-        <tbody id="#myTable">
-          <tr id="allUserRow">
-            <th id="idTd"></th>
-            <td id="nameTd"></td>
-            <td id="emailTd"></td>
-          </tr>
-        </tbody>
+        <tbody id="myTable"></tbody>
       </table>
     </div>
   </body>
