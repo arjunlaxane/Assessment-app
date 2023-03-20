@@ -11,9 +11,26 @@ $(document).ready(function () {
       let name = $('#name').val();
       let email = $('#email').val();
       let password = $('#password').val();
+
       let userConfirmPassword = $('#confirmPassword').val();
       const isUser = result.find(ele => email === ele.email);
-
+      if (password !== '' && name !== '' && email !== '' && password !== '') {
+        if (password.length <= 9) {
+          Toastify({
+            text: `Password should be at least 9 characters`,
+            duration: 3000,
+            newWindow: true,
+            close: true,
+            gravity: 'top',
+            position: 'right',
+            stopOnFocus: true,
+            style: {
+              background: 'linear-gradient(to right, #00b09b, #96c93d)',
+            },
+          }).showToast();
+          return false;
+        }
+      }
       if (password !== userConfirmPassword) {
         Toastify({
           text: `Password doesn't match
@@ -38,6 +55,14 @@ $(document).ready(function () {
           password !== '' &&
           password === userConfirmPassword
         ) {
+          event.stopImmediatePropagation();
+          $.post('http://localhost:3000/users', {
+            name,
+            email,
+            password,
+            isAdmin: false,
+          });
+
           Toastify({
             text: `Registration Successful
                       Please login`,
@@ -53,8 +78,8 @@ $(document).ready(function () {
           }).showToast();
 
           setTimeout(() => {
-            window.location = 'Home.html';
-          }, 1000);
+            window.location = 'login.html';
+          }, 2000);
         } else {
           Toastify({
             text: `Invalid Credentials

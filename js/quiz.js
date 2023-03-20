@@ -1,6 +1,13 @@
 $(document).ready(function () {
   let loginVal = localStorage.getItem('login');
-  if (loginVal) {
+  let isAdmin = localStorage.getItem('isAdmin');
+
+  if (loginVal === 'true' && isAdmin === 'false') {
+    $('#testDetailsHome').hide();
+    $('#allUser').hide();
+  }
+
+  if (loginVal === 'true') {
     let userName = localStorage.getItem('name');
 
     $.when($.getJSON('http://localhost:3000/tests')).done(result => {

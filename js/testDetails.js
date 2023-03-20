@@ -19,32 +19,49 @@ $(document).ready(function () {
 
       // });
 
-      let dataAll = {
-        test_Topic: test_Topic,
-        test_Seconds: test_Seconds,
-      };
+      if (test_Topic !== '' && test_Seconds !== '') {
+        let dataAll = {
+          test_Topic: test_Topic,
+          test_Seconds: test_Seconds,
+        };
 
-      let testDetails = JSON.stringify(dataAll);
+        let testDetails = JSON.stringify(dataAll);
 
-      $.ajaxSetup({
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      });
-      $.ajax({
-        url: 'http://localhost:3000/tests',
-        type: 'post',
-        data: testDetails,
-        dataType: 'json',
-        success: function (data) {
-          console.info(data);
-        },
-      });
+        $.ajaxSetup({
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        });
+        $.ajax({
+          url: 'http://localhost:3000/tests',
+          type: 'post',
+          data: testDetails,
+          dataType: 'json',
+          success: function (data) {
+            console.info(data);
+            window.location = 'createTest.html';
+          },
+        });
 
-      // setTimeout(() => {
-      window.location = 'createTest.html';
-      // }, 1000);
+        // setTimeout(() => {
+        // window.location = 'createTest.html';
+        // }, 1000);
+      } else {
+        Toastify({
+          text: 'Please enter details correctly',
+          duration: 1000,
+          newWindow: true,
+          close: true,
+          gravity: 'top',
+          position: 'right',
+          // stopOnFocus: true,
+          style: {
+            background: 'background-image:red',
+          },
+        }).showToast();
+        return false;
+      }
     });
   } else {
     window.location = 'Home.html';

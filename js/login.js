@@ -51,7 +51,7 @@ $(document).ready(function () {
         return true;
       }
 
-      if (findUser && findUser.isAdmin === true) {
+      if (findUser && findUser.isAdmin === 'true') {
         let userName = findUser.name;
         localStorage.setItem('id', findUser.id);
         localStorage.setItem('name', userName);
@@ -77,7 +77,7 @@ $(document).ready(function () {
           window.location = 'Home.html';
         }, 1000);
         return true;
-      } else if (findUser && findUser.isAdmin === false) {
+      } else if (findUser && findUser.isAdmin === 'false') {
         let userName = findUser.name;
         localStorage.setItem('id', findUser.id);
         localStorage.setItem('name', userName);

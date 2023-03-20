@@ -3,7 +3,7 @@ $(document).ready(function () {
   let isAdmin = localStorage.getItem('isAdmin');
   let userName = localStorage.getItem('name');
 
-  if (login && isAdmin) {
+  if (login && isAdmin === 'true') {
     $('#userNavName').html(`<span>Welcome ${userName}<span>`);
     $('#logout').append().html('<span class="m-1 homwNavLink" >Logout</span>');
 
