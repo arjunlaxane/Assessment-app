@@ -23,12 +23,31 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <style>
       #navBar {
         width: 90vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+      #demo {
+        width: 20vmax;
+      }
+      .homwNavLink:hover {
+        color: black;
+      }
+      #userNavName {
+        color: rgb(76, 128, 240);
+        text-decoration: none !important;
       }
     </style>
   </head>
@@ -37,75 +56,24 @@
     <nav
       class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between"
     >
-      <!-- Brand/logo -->
-
-      <!-- Links -->
-      <ul class="navbar-nav" id="navBar">
+      <ul
+        class="navbar-nav d-flex justify-content-between align-items-center"
+        id="navBar"
+      >
         <li class="nav-item mr-5">
           <h2 id="appName">Pariksha</h2>
         </li>
         <li class="nav-item mr-5">
-          <b> <h4 id="userNavName"></h4></b>
+          <b> <a href="../html/editProfile.html" id="userNavName"></a></b>
         </li>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#demo"
-        >
-          &#9776;
-        </button>
       </ul>
     </nav>
 
-    <div
-      class="offcanvas offcanvas-start"
-      style="background-color: #5647b9"
-      id="demo"
-    >
-      <div class="offcanvas-header">
-        <h2 id="appName">Pariksha</h2>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-        ></button>
-      </div>
-      <div class="offcanvas-body">
-        <b>
-          <a href="../html/Home.html" class="m-1 homwNavLink" id="quiz_home"
-            >Home</a
-          ></b
-        >
-
-        <b>
-          <a
-            href="../html/testDetails.html"
-            class="m-1 homwNavLink"
-            id="testDetailsHome"
-            >Create a test</a
-          ></b
-        >
-
-        <b>
-          <a
-            href="../html/allUsersList.html"
-            class="m-1 homwNavLink"
-            id="allUser"
-            >View all users</a
-          ></b
-        >
-
-        <b>
-          <span id="logout" class="homwNavLink"></span>
-        </b>
-      </div>
-    </div>
-    <div class="container mt-1">
-      <h5 class="card-text float-right font-weight-bold" id="showTimer">
+    <div class="container">
+      <!-- <h5 class="card-text float-right font-weight-bold" id="showTimer">
         Time :
         <span id="time">00</span>
-      </h5>
+      </h5> -->
 
       <!-- first page -->
 
@@ -120,26 +88,32 @@
             class="btn btn-success d-flex mx-auto mt-5 p-2"
             id="Quizbtn"
           ></button>
+          <button
+            class="btn btn-danger d-flex mx-auto mt-5 p-2"
+            id="quizHomebtn"
+          ></button>
         </div>
 
         <!-- quiz page -->
         <div id="quiz">
-          <div
-            class="time_head d-flex justify-content-between align-items-center mt-4 mb-5"
-          >
-            <h5 id="quiz_head">Time</h5>
-            <div id="timer"><span>00:00</span></div>
+          <div class="time_head">
+            <h5 id="quiz_head">Time :</h5>
+            <div id="timer"><span> 00:00</span></div>
           </div>
           <div class="questio_option">
-            <div id="question" class="mb-5"></div>
-            <div id="options" class="mt-5"></div>
             <div
-              class="buttons d-flex justify-content-between align-items-center mt-4"
+              id="question"
+              class="d-flex flex-column justify-content-center align-items-center mb-2 mt-2"
+            >
+              <!-- <div id="Options"></div> -->
+            </div>
+            <div
+              class="buttons d-flex justify-content-center align-items-center mt-4"
             >
               <button class="btn btn-danger" id="prev">prev</button>
 
-              <button class="btn btn-success" id="next">Next</button>
-              <button class="btn btn-success" id="finish">Finish</button>
+              <button class="btn btn-success ml-4" id="next">Next</button>
+              <button class="btn btn-success ml-4" id="finish">Finish</button>
             </div>
           </div>
         </div>

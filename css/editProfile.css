@@ -13,8 +13,16 @@
 .homwNavLink {
   color: azure;
   font-size: 1.3vmax;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
+}
+
+.homwNavLink:hover {
+  color: black;
+}
+
+#demo {
+  width: 20vmax;
 }
 
 .linkDiv {

@@ -6,35 +6,29 @@ $(document).ready(function () {
   if (loginVal === 'true' && admin === 'true') {
     let userName = localStorage.getItem('name');
     let totalInputs = $('#newInput > div > input[type="text"]').length;
-    $('#userNavName').html(`<span>Welcome ${userName}<span>`);
+
+    $('#userNavName').html(`<span>${userName}<span>`);
     $('#logout').append().html('<span class="m-1 homwNavLink" >Logout</span>');
 
     $('#addOption').click(() => {
       if (totalInputs < 6) {
         totalInputs++;
 
-        let newOption = $(document.createElement('div')).attr(
-          'id',
-          'optionDiv' + totalInputs
-        );
+        let newOption = $(document.createElement('div'));
 
         newOption.after().html(
-          `<input type="text" class="testDetailInputTag mb-3" name=option_${totalInputs} placeholder="Add option ${totalInputs}" value='' id="option_${totalInputs}"/>
+          `<input class="testDetailInputTag mb-3"  type="text" name=option_${totalInputs} placeholder="Add option ${totalInputs}"  id="option_${totalInputs}"/>
             
                        <label for="correct${totalInputs}">Right</label>
           <input type="radio" value="1" id="correct${totalInputs}" name="answer${totalInputs}" />
          `
         );
-        //  <label for="incorrect${totalInputs}">Incorrect</label>
-        // <input type="radio" value="0" id="incorrect${totalInputs}" name="answer${totalInputs}" />
 
         newOption.appendTo('#newInput');
       }
-      console.log(totalInputs);
     });
 
     $('#removeOption').click(() => {
-      console.log(totalInputs);
       if (totalInputs === 4) {
         return false;
       }
@@ -48,10 +42,12 @@ $(document).ready(function () {
     let answerArr4 = [];
     let answerArr5 = [];
     let answerArr6 = [];
+
     $('#correct1').click(() => {
       let c = $("input[name='answer1']:checked").val();
-      console.log(c);
+      // console.log(c);
       answerArr1.push(c);
+
       $('#correct2').attr('disabled', true);
       $('#correct3').attr('disabled', true);
       $('#correct4').attr('disabled', true);
@@ -60,7 +56,7 @@ $(document).ready(function () {
     });
     $('#correct2').click(() => {
       let c = $("input[name='answer2']:checked").val();
-      console.log(c);
+      // console.log(c);
       answerArr2.push(c);
       $('#correct1').attr('disabled', true);
       $('#correct3').attr('disabled', true);
@@ -71,7 +67,7 @@ $(document).ready(function () {
     $('#correct3').click(() => {
       let c = $("input[name='answer3']:checked").val();
 
-      console.log(c);
+      // console.log(c);
       answerArr3.push(c);
       $('#correct1').attr('disabled', true);
       $('#correct2').attr('disabled', true);
@@ -82,7 +78,7 @@ $(document).ready(function () {
     $('#correct4').click(() => {
       let c = $("input[name='answer4']:checked").val();
 
-      console.log(c);
+      // console.log(c);
       answerArr4.push(c);
       $('#correct1').attr('disabled', true);
       $('#correct2').attr('disabled', true);
@@ -93,7 +89,7 @@ $(document).ready(function () {
     $('#correct5').click(() => {
       let c = $("input[name='answer5']:checked").val();
 
-      console.log(c);
+      // console.log(c);
       answerArr5.push(c);
       $('#correct1').attr('disabled', true);
       $('#correct2').attr('disabled', true);
@@ -105,7 +101,7 @@ $(document).ready(function () {
     $('#correct6').click(() => {
       let c = $("input[name='answer6']:checked").val();
 
-      console.log(c);
+      // console.log(c);
       answerArr6.push(c);
       $('#correct1').attr('disabled', true);
       $('#correct2').attr('disabled', true);
@@ -138,7 +134,7 @@ $(document).ready(function () {
         let option5 = optionsVal[0] ?? undefined;
         let option6 = optionsVal[1] ?? undefined;
 
-        console.log(optionsVal);
+        // console.log(optionsVal);
 
         var formData = {
           question: writeQuestion,
@@ -159,7 +155,6 @@ $(document).ready(function () {
         };
 
         var stringifiedFormData = JSON.stringify(formData);
-
         $.ajaxSetup({
           headers: {
             'Content-Type': 'application/json',
@@ -167,18 +162,14 @@ $(document).ready(function () {
           },
         });
         $.ajax({
-          url: 'http://localhost:3000/tests',
-          type: 'post',
+          url: `http://localhost:3000/tests`,
+          type: 'POST',
           data: stringifiedFormData,
           dataType: 'json',
           success: function (data) {
-            console.info(data);
+            window.location = 'Home.html';
           },
         });
-
-        setTimeout(() => {
-          window.location = 'Home.html';
-        }, 1000);
       } else {
         Toastify({
           text: 'Please enter details correctly',
@@ -215,11 +206,11 @@ $(document).ready(function () {
           optionsAdded += $('#option_' + i).val() + '-';
         }
         let optionsVal = optionsAdded.split('-');
-        console.log(optionsVal);
+        // console.log(optionsVal);
         let option5 = optionsVal[0] ?? undefined;
         let option6 = optionsVal[1] ?? undefined;
 
-        console.log(optionsVal);
+        // console.log(optionsVal);
 
         var formData = {
           question: writeQuestion,
@@ -248,18 +239,15 @@ $(document).ready(function () {
           },
         });
         $.ajax({
-          url: 'http://localhost:3000/tests',
-          type: 'post',
+          url: `http://localhost:3000/tests`,
+          type: 'POST',
           data: stringifiedFormData,
           dataType: 'json',
           success: function (data) {
             console.info(data);
+            window.location = 'createTest.html';
           },
         });
-
-        setTimeout(() => {
-          window.location = 'createTest.html';
-        }, 1000);
       } else {
         Toastify({
           text: 'Please enter details correctly',
@@ -277,18 +265,40 @@ $(document).ready(function () {
       }
     });
   } else {
-    window.location = 'Home.html';
+    Toastify({
+      text: 'Invalid access',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'red',
+      },
+    }).showToast();
+    setTimeout(() => {
+      window.location = 'Home.html';
+    }, 1000);
   }
 
   //login
 
   $('#logout').click(function () {
-    localStorage.removeItem('login');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('id');
+    localStorage.clear();
+
+    Toastify({
+      text: 'Logout Successfully',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'red',
+      },
+    }).showToast();
 
     setTimeout(() => {
       window.location = 'Home.html';

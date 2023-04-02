@@ -6,6 +6,10 @@ $(document).ready(function () {
     return false;
   }
 
+  $('#loginHome-btn').click(() => {
+    window.location = 'Home.html';
+  });
+
   $.when($.getJSON('http://localhost:3000/users')).done(result => {
     $('#login-btn').click(function () {
       let email = $('#email').val();
@@ -24,7 +28,7 @@ $(document).ready(function () {
           position: 'right',
           // stopOnFocus: true,
           style: {
-            background: 'background-image:red',
+            background: 'linear-gradient(to right, #00b09b, #96c93d)',
           },
         }).showToast();
         return false;
@@ -44,9 +48,7 @@ $(document).ready(function () {
           gravity: 'top',
           position: 'right',
           stopOnFocus: true,
-          style: {
-            background: 'linear-gradient(to right, #00b09b, #96c93d)',
-          },
+          style: { background: 'background-image:red' },
         }).showToast();
         return true;
       }

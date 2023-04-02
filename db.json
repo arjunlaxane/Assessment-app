@@ -5,48 +5,96 @@
       "name": "John doe",
       "email": "john@gmail.com",
       "password": "1234567891",
-      "isAdmin": "false"
+      "isAdmin": "false",
+      "testCount": "0",
+      "isReject": "false",
+      "isApprove": "false"
     },
     {
       "id": 2,
       "name": "Marry doe",
       "email": "marry@gmail.com",
       "password": "12345678912",
-      "isAdmin": "false"
+      "isAdmin": "false",
+      "testCount": "0",
+      "isReject": "false",
+      "isApprove": "false"
     },
     {
-      "name": "Arjun",
+      "name": "Arjun Laxane",
       "email": "arjun@gmail.com",
       "password": "123456789",
       "id": 3,
-      "isAdmin": "true"
+      "isAdmin": "true",
+      "testCount": "0",
+      "isReject": "false",
+      "isApprove": "false"
     },
     {
       "name": "arun",
       "email": "arun@gmail.com",
       "password": "12345678910",
       "id": 4,
-      "isAdmin": "false"
+      "isAdmin": "false",
+      "testCount": "0",
+      "isReject": "false",
+      "isApprove": "false"
     },
     {
       "name": "shan123",
       "email": "shan123@gmail.com",
       "password": "1234567891012",
       "isAdmin": "false",
-      "id": 5
+      "testCount": "0",
+      "id": 5,
+      "isReject": "false",
+      "isApprove": "false"
     },
     {
       "name": "ashu",
       "email": "ashu@gmail.com",
       "password": "1234567891",
       "isAdmin": "false",
-      "id": 6
+      "testCount": "0",
+      "id": 6,
+      "isReject": "false",
+      "isApprove": "false"
+    },
+    {
+      "name": "radhe",
+      "email": "radhe@gmail.com",
+      "password": "password12345",
+      "isAdmin": "false",
+      "testCount": "0",
+      "id": 7,
+      "isReject": "false",
+      "isApprove": "false"
+    },
+    {
+      "name": "monu",
+      "email": "monu@gmail.com",
+      "password": "password12345",
+      "isAdmin": "false",
+      "testCount": "0",
+      "id": 8,
+      "isReject": "false",
+      "isApprove": "false"
+    },
+    {
+      "name": "kamal",
+      "email": "kamal@gmail.com",
+      "password": "kamal@gmail",
+      "isAdmin": "false",
+      "testCount": "0",
+      "id": 9,
+      "isReject": "false",
+      "isApprove": "false"
     }
   ],
   "tests": [
     {
       "test_Topic": "Country",
-      "test_Seconds": "10",
+      "test_Seconds": "1000000000000",
       "id": 1
     },
     {
@@ -138,6 +186,125 @@
         }
       ],
       "id": 4
+    }
+  ],
+  "testRequest": [
+    {
+      "name": "arun",
+      "email": "arun@gmail.com",
+      "password": "12345678910",
+      "id": 4,
+      "isAdmin": "false",
+      "testCount": "1",
+      "isReject": "false",
+      "isApprove": "true"
+    }
+  ],
+  "result": [
+    {
+      "name": "arun",
+      "score": 3,
+      "total": 3,
+      "email": "arun@gmail.com",
+      "testDetails": [
+        {
+          "test_Topic": "Country",
+          "test_Seconds": "1000000000000",
+          "id": 1
+        },
+        {
+          "question": "What is the capital of France?",
+          "answers": [
+            {
+              "option": "London",
+              "correct": 0
+            },
+            {
+              "option": "Paris",
+              "correct": "1"
+            },
+            {
+              "option": "Berlin",
+              "correct": 0
+            },
+            {
+              "option": "Madrid",
+              "correct": 0
+            },
+            {
+              "option": "Vatican",
+              "correct": 0
+            },
+            {
+              "option": "Option not added",
+              "correct": 0
+            }
+          ],
+          "id": 2
+        },
+        {
+          "question": "What is the largest country in the world?",
+          "answers": [
+            {
+              "option": "Russia",
+              "correct": "1"
+            },
+            {
+              "option": "Canada",
+              "correct": 0
+            },
+            {
+              "option": "China",
+              "correct": 0
+            },
+            {
+              "option": "USA",
+              "correct": 0
+            },
+            {
+              "option": "India",
+              "correct": 0
+            },
+            {
+              "option": "Brazil",
+              "correct": 0
+            }
+          ],
+          "id": 3
+        },
+        {
+          "question": "What is the capital of India?",
+          "answers": [
+            {
+              "option": "Chennai",
+              "correct": 0
+            },
+            {
+              "option": "Banglore",
+              "correct": 0
+            },
+            {
+              "option": "Hyderabad",
+              "correct": 0
+            },
+            {
+              "option": "Delhi",
+              "correct": "1"
+            },
+            {
+              "option": "Option not added",
+              "correct": 0
+            },
+            {
+              "option": "Option not added",
+              "correct": 0
+            }
+          ],
+          "id": 4
+        }
+      ],
+      "answer": "Paris,Russia,Delhi",
+      "id": 1
     }
   ]
 }

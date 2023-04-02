@@ -1,35 +1,16 @@
-#options {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#options > button {
-  margin: 1vmax;
-  width: 50vmax;
-  height: 3vmax;
-  border-radius: 0.5vmax;
-}
-
-#all_Options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#Option_content {
-  margin-left: 1.5vmax;
-}
 #appName {
   padding: 0.5vmax;
   padding-top: 1.5vmax;
   color: rgb(241, 241, 241);
 }
+#question {
+  /* background-color: blue; */
+  width: 80vw;
+}
 .homwNavLink {
   color: azure;
   font-size: 1.3vmax;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
 }
 #userNavName {
@@ -37,18 +18,7 @@
 }
 
 #quiz {
-  width: 100vw;
-}
-
-#question {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 1vmax;
-  background-color: antiquewhite;
-  padding: 0.5vmax;
+  /* width: 100vw; */
 }
 
 label {
@@ -56,4 +26,31 @@ label {
 }
 input {
   margin-left: 1vmax;
+}
+#question > div:nth-child(2) {
+  /* width: 30vw; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#question > div:nth-child(2) > div {
+  margin-left: 2vmax;
+  color: rgb(11, 39, 197);
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 2vmax;
+  padding: 1vmax;
+}
+
+#question > div:nth-child(2) > div > label {
+  margin-left: 0.5vmax;
+}
+
+.time_head {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+#timer {
+  padding-left: 1vmax;
 }

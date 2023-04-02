@@ -75,30 +75,42 @@
         justify-content: space-between;
         align-items: center;
       }
+      #signup {
+        margin-top: 2vmax;
+      }
+
+      #login-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      #login-links > b {
+        margin-bottom: 1vmax;
+      }
     </style>
   </head>
   <body>
     <!-- navbar -->
-
     <nav
-      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between"
+      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between col-sm-12"
     >
-      <!-- Brand/logo -->
-
+      <button
+        class="btn btn-primary ml-4"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#demo"
+      >
+        &#9776;
+      </button>
       <!-- Links -->
-      <ul class="navbar-nav" id="navBar">
-        <li class="nav-item mr-5">
+      <ul
+        class="navbar-nav d-flex justify-content-between align-items-center"
+        id="navBar"
+      >
+        <li class="nav-item mr-5" style="margin-left: -3vmax">
           <h2 id="appName">Pariksha</h2>
         </li>
-
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#demo"
-        >
-          &#9776;
-        </button>
       </ul>
     </nav>
 
@@ -115,9 +127,14 @@
           data-bs-dismiss="offcanvas"
         ></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body" id="login-links">
         <b>
-          <a href="../html/register.html" class="m-1 homwNavLink" id="signup"
+          <a href="../html/Home.html" class="m-2 homwNavLink" id="quiz_home"
+            >Home</a
+          ></b
+        >
+        <b>
+          <a href="../html/register.html" class="m-2 homwNavLink" id="signup"
             >Sign up</a
           ></b
         >
@@ -129,9 +146,13 @@
     >
       <div class="row">
         <div class="col-md-12 personal-info">
-          <h3>Log in to Pariksha</h3>
+          <h3 style="text-align: center">Log in to Pariksha</h3>
 
-          <form class="form-horizontal mt-5" id="login-form" role="form">
+          <form
+            class="form-horizontal mt-5 col-md-12"
+            id="login-form"
+            role="form"
+          >
             <div class="form-group">
               <label class="col-md-12 control-label">Email:</label>
               <div class="col-md-12">
@@ -158,8 +179,10 @@
               </div>
             </div>
 
-            <div class="form-group text-center">
-              <div class="col-md-12">
+            <div
+              class="form-group text-center mt-5 d-flex align-items-center justify-content-center"
+            >
+              <div class="col-md-7">
                 <input
                   id="login-btn"
                   type="submit"
@@ -167,8 +190,21 @@
                   value="Log in"
                 />
               </div>
+              <!-- <div class="col-md-6">
+                <input
+                  id="loginHome-btn"
+                  type="submit"
+                  class="btn btn-danger"
+                  value="Home"
+                />
+              </div> -->
             </div>
           </form>
+
+          <div class="d-flex justify-content-center mt-3">
+            <p>Don't have an account?</p>
+            <a class="ml-2" href="../html/register.html">Register</a>
+          </div>
         </div>
       </div>
     </div>

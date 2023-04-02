@@ -1,6 +1,6 @@
 .logo {
   width: 100%;
-  height: 40vmax;
+  /* height: 40vmax; */
   background-size: contain;
 }
 a {
@@ -11,9 +11,10 @@ a {
   display: flex;
 }
 
-/* .sub-linkDiv { */
-/* width: 80vw; */
-/* } */
+#demo {
+  width: 20vmax;
+}
+
 #copyright {
   font-size: 1.2vmax;
   margin: 1vmax;
@@ -27,11 +28,16 @@ a {
 .homwNavLink {
   color: azure;
   font-size: 1.3vmax;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
 }
+
+.homwNavLink:hover {
+  color: black;
+}
 #userNavName {
-  color: rgb(200, 255, 0);
+  color: rgb(76, 128, 240);
+  text-decoration: none !important;
 }
 
 @media only screen and (max-width: 768px) {

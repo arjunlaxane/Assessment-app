@@ -61,6 +61,7 @@ $(document).ready(function () {
             email,
             password,
             isAdmin: false,
+            testCount: 0,
           });
 
           Toastify({

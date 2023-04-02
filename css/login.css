@@ -3,12 +3,19 @@
   padding-top: 1.5vmax;
   color: rgb(241, 241, 241);
 }
-
 .homwNavLink {
   color: azure;
   font-size: 1.3vmax;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
+}
+
+.homwNavLink:hover {
+  color: black;
+}
+
+#demo {
+  width: 20vmax;
 }
 
 .linkDiv {

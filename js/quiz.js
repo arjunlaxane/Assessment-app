@@ -1,23 +1,99 @@
 $(document).ready(function () {
   let loginVal = localStorage.getItem('login');
   let isAdmin = localStorage.getItem('isAdmin');
+  let userEmail = localStorage.getItem('email');
+
+  $('#quizHomebtn').click(() => {
+    window.location = 'Home.html';
+  });
 
   if (loginVal === 'true' && isAdmin === 'false') {
+    $('#allResult').css({ display: 'none' });
     $('#testDetailsHome').hide();
     $('#allUser').hide();
+    $('#createNewTest').hide();
   }
 
-  if (loginVal === 'true') {
+  if (loginVal === 'true' && isAdmin === 'false') {
     let userName = localStorage.getItem('name');
+    let email = localStorage.getItem('email');
+
+    $.when($.getJSON('http://localhost:3000/users')).done(result => {
+      let firstAttempt = result.find(ele => ele.email === userEmail);
+      $('#quizHomebtn').text('Home').css({
+        'font-size': '1vmax',
+        'font-weight': 500,
+      });
+      if (firstAttempt.testCount === '0') {
+        $('#Quizbtn').text(' Start the quiz').css({
+          'font-size': '1.4vmax',
+          color: '#f1ecf0',
+          'font-weight': 500,
+        });
+        $('#bestLuck').text('All the best').css({
+          'font-size': '2vmax',
+          color: '#c20cac',
+          'font-weight': 500,
+        });
+      } else {
+        $('#bestLuck')
+          .html(
+            'Unauthorized Access, Please contact admin <span id="userTestRequest">Click here to send Request</span>'
+          )
+          .css({
+            'font-size': '1.5vmax',
+            color: '#ef0324',
+            'font-weight': 400,
+          });
+
+        $('#userTestRequest').css({
+          'font-size': '1vmax',
+          color: '#4126ad',
+          cursor: 'pointer',
+          'margin-left': '0.5vmax',
+        });
+        $('#Quizbtn').text('Start the quiz').css({
+          'font-size': '1.4vmax',
+          color: '#f1ecf0',
+          'font-weight': 500,
+        });
+
+        $('#Quizbtn').attr('disabled', true);
+      }
+
+      //send request to admin
+
+      $('#bestLuck').click(() => {
+        var stringifiedRequest = JSON.stringify(firstAttempt);
+        $.ajaxSetup({
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        });
+        $.ajax({
+          url: `http://localhost:3000/testRequest`,
+          type: 'POST',
+          data: stringifiedRequest,
+          dataType: 'json',
+          success: function (data) {
+            window.location = 'Home.html';
+          },
+        });
+      });
+    });
 
     $.when($.getJSON('http://localhost:3000/tests')).done(result => {
+      let testData = JSON.stringify(result);
+      localStorage.setItem('testData', testData);
+
       const questionOptions = result.filter(val => val.id >= 2);
       var currentQuestion = 0;
       var score = 0;
-      let topic = result[0].test_Topic;
-      let timeRemaining = +result[0].test_Seconds;
+      let topic = result[0] ? result[0].test_Topic : ' ';
+      let timeRemaining = result[0] ? +result[0].test_Seconds : 10;
 
-      $('#userNavName').html(`<span>Welcome ${userName}<span>`);
+      $('#userNavName').html(`<span>${userName}<span>`);
       $('#logout')
         .append()
         .html('<span class="m-1 homwNavLink" >Logout</span>');
@@ -46,9 +122,6 @@ $(document).ready(function () {
         'font-weight': 500,
       });
 
-      $('#bestLuck')
-        .text('All the best')
-        .css({ 'font-size': '2vmax', color: '#c20cac', 'font-weight': 500 });
       $('#next').hide();
       $('#timer').hide();
       $('#quiz').hide();
@@ -56,11 +129,52 @@ $(document).ready(function () {
       $('#finish').hide();
       $('#Result').hide();
       $('#showTimer').hide();
-      $('#Quizbtn')
-        .text(' Start the quiz')
-        .css({ 'font-size': '1.5vmax', color: '#f1ecf0', 'font-weight': 500 });
       button_manager();
 
+      $('body').keypress(function (e) {
+        if (e.which !== '') {
+          $.when($.getJSON('http://localhost:3000/users')).done(result => {
+            let firstAttempt = result.find(ele => ele.email === userEmail);
+
+            $.ajax({
+              url: `http://localhost:3000/users/${firstAttempt.id}`,
+              method: 'PATCH',
+              data: {
+                testCount: 0,
+              },
+
+              error: function (xhr, status, error) {
+                console.log(xhr.responseText); // log any errors to the console
+              },
+            });
+          });
+          window.location = 'Home.html';
+        }
+        return false;
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.which === 27) {
+          //Esc key was pressed
+          $.when($.getJSON('http://localhost:3000/users')).done(result => {
+            let firstAttempt = result.find(ele => ele.email === userEmail);
+
+            $.ajax({
+              url: `http://localhost:3000/users/${firstAttempt.id}`,
+              method: 'PATCH',
+              data: {
+                testCount: 1,
+              },
+
+              error: function (xhr, status, error) {
+                console.log(xhr.responseText); // log any errors to the console
+              },
+            });
+          });
+          window.location = 'Home.html';
+        }
+        return false;
+      });
       //button manager
 
       function button_manager() {
@@ -92,7 +206,8 @@ $(document).ready(function () {
         $('#next').show();
         var selectedAnswer = $("input[name='answer']:checked").val();
 
-        checkAnswer(selectedAnswer);
+        checkAnswer('hh', selectedAnswer);
+        // var a= $("")
 
         // start timer
         var timer = setInterval(function () {
@@ -134,27 +249,58 @@ $(document).ready(function () {
         button_manager();
       });
       // handle finish button click
+
       $('#finish').on('click', function () {
+        $.when($.getJSON('http://localhost:3000/users')).done(result => {
+          let firstAttempt = result.find(ele => ele.email === userEmail);
+
+          let data = { testCount: '1' };
+          $.ajax({
+            url: `http://localhost:3000/users/${firstAttempt.id}`,
+            method: 'PATCH',
+
+            data: JSON.stringify(data),
+
+            success: function (data) {
+              // alert(JSON.stringify(data));
+            },
+
+            error: function (xhr, status, error) {
+              console.log(xhr.responseText); // log any errors to the console
+            },
+          });
+        });
+
         finishQuiz();
       });
-
+      var userAnswers = [];
       // display question and options
       function displayQuestion(q) {
         var question = questionOptions[q].question;
         var options = questionOptions[q].answers;
-        console.log(options);
-        var html = '<h2>' + question + '</h2>';
+
+        var htmlQ = '<div><h2>' + question + '</h2></div>';
+        var htmlOptions = '';
         for (var i = 0; i < options.length; i++) {
           if (options[i].option != 'Option not added') {
-            html +=
-              "<label><input type='radio'  name='answer' value='" +
-              options[i].correct +
-              "'>" +
-              options[i].option +
-              '</label><br>';
+            htmlOptions +=
+              `<div><label for="label-${i}"  value="${options[i].option}" id="labelID-${i}"> ${options[i].option} </label> ` +
+              `<input type='radio'  name='answer' value='${options[i].correct}' id="label-${i}"/></div>`;
           }
         }
-        $('#question').html(html).css({ 'margin-right': '1vmax' });
+
+        $('#question').html(htmlQ).css({ 'margin-right': '1vmax' });
+
+        $('#question')
+          .append(`<div>${htmlOptions}</div>`)
+          .css({ 'margin-right': '1vmax' });
+
+        $('label').on('click', function () {
+          var value = $(this).attr('value');
+
+          userAnswers[q] = value;
+          localStorage.setItem('testAnswer', userAnswers);
+        });
       }
 
       // check answer and update score
@@ -168,31 +314,78 @@ $(document).ready(function () {
 
       // finish quiz and display result
       function finishQuiz() {
-        clearInterval(timer);
-
         var selectedAnswer = $("input[name='answer']:checked").val();
+        if (selectedAnswer) {
+          checkAnswer(selectedAnswer);
+        }
 
-        checkAnswer(selectedAnswer);
+        clearInterval(timer);
+        let testDetails = JSON.parse(localStorage.getItem('testData'));
+        let testData = {
+          name: userName,
+          score: score,
+          total: questionOptions.length,
+          email: email,
+          testDetails: testDetails,
+          answer: localStorage.getItem('testAnswer'),
+        };
+        localStorage.setItem('resultData', JSON.stringify(testData));
+
+        var stringifiedFormData = JSON.stringify(testData);
+
         $('#quiz').hide();
         var html =
-          '<h2> Hi ' +
+          ' Hi ' +
           userName +
           ',' +
           'Your score: ' +
           score +
           ' out of ' +
-          questionOptions.length +
-          '</h2>';
-        $('#result').html(html);
+          questionOptions.length;
+        alert(html);
+        // $('#result').html(html);
+        // setTimeout(() => {
+        window.location = 'Home.html';
+        // }, 1000);
+        $.ajaxSetup({
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        });
+        $.ajax({
+          url: `http://localhost:3000/result`,
+          type: 'POST',
+          data: stringifiedFormData,
+          dataType: 'json',
+        });
       }
 
-      // format time in minutes and seconds
       function formatTime(time) {
         var minutes = Math.floor(time / 60);
         var seconds = time % 60;
         return ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
       }
     });
+  } else if (loginVal === 'true' && isAdmin === 'true') {
+    Toastify({
+      text: 'Sorry, You are not the user ',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'background-image:red',
+      },
+    }).showToast();
+
+    setTimeout(() => {
+      window.location = 'Home.html';
+    }, 1000);
+  } else if (!loginVal) {
+    window.location = 'Home.html';
   } else {
     Toastify({
       text: 'Access Denied, Please Login ',
@@ -214,16 +407,44 @@ $(document).ready(function () {
 
   //logout
   $('#logout').click(function () {
-    localStorage.removeItem('login');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('id');
+    localStorage.clear();
+
+    Toastify({
+      text: 'Logout Successfully',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'linear-gradient(to right, #00b09b, #96c93d)',
+      },
+    }).showToast();
 
     setTimeout(() => {
       window.location = 'Home.html';
       $('#logout').css({ display: 'none' });
     }, 1000);
+  });
+
+  $('#createNewTest').click(() => {
+    $('#testDetailsHome').show();
+
+    let ans = result.filter(ele => ele.id >= 1);
+
+    // $.ajaxSetup({
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Accept: 'application/json',
+    //   },
+    // });
+    for (let i = 1; i <= ans.length; i++) {
+      $.ajax({
+        url: `http://localhost:3000/tests/${i}`,
+        type: 'DELETE',
+        // dataType: 'json',
+      });
+    }
   });
 });

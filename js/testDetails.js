@@ -4,7 +4,7 @@ $(document).ready(function () {
 
   if (loginVal === 'true' && admin === 'true') {
     let userName = localStorage.getItem('name');
-    $('#userNavName').html(`<span>Welcome ${userName}<span>`);
+    $('#userNavName').html(`<span>${userName}<span>`);
     $('#logout').append().html('<span class="m-1 homwNavLink" >Logout</span>');
 
     $('#testDetailsBtn').click(() => {
@@ -35,7 +35,7 @@ $(document).ready(function () {
         });
         $.ajax({
           url: 'http://localhost:3000/tests',
-          type: 'post',
+          type: 'POST',
           data: testDetails,
           dataType: 'json',
           success: function (data) {
@@ -68,12 +68,20 @@ $(document).ready(function () {
   }
 
   $('#logout').click(function () {
-    localStorage.removeItem('login');
-    localStorage.removeItem('name');
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
-    localStorage.removeItem('isAdmin');
-    localStorage.removeItem('id');
+    localStorage.clear();
+
+    Toastify({
+      text: 'Logout Successfully',
+      duration: 3000,
+      newWindow: true,
+      close: true,
+      gravity: 'top',
+      position: 'right',
+      // stopOnFocus: true,
+      style: {
+        background: 'red',
+      },
+    }).showToast();
 
     setTimeout(() => {
       window.location = 'Home.html';

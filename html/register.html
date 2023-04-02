@@ -51,32 +51,55 @@
         justify-content: space-between;
         align-items: center;
       }
+
+      .homwNavLink {
+        color: azure;
+        font-size: 1.3vmax;
+        text-decoration: none !important;
+        cursor: pointer;
+      }
+
+      .homwNavLink:hover {
+        color: black;
+      }
+
+      #demo {
+        width: 20vmax;
+      }
+
+      #register-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      #register-links > b {
+        margin-bottom: 1vmax;
+      }
     </style>
   </head>
 
   <body>
     <!-- navbar -->
     <nav
-      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between"
+      class="navbar navbar-expand-sm bg-dark navbar-dark d-flex align-items-center justify-content-between col-sm-12"
     >
-      <!-- Brand/logo -->
-
+      <button
+        class="btn btn-primary ml-4"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#demo"
+      >
+        &#9776;
+      </button>
       <!-- Links -->
-      <ul class="navbar-nav" id="navBar">
-        <li class="nav-item mr-5">
+      <ul
+        class="navbar-nav d-flex justify-content-between align-items-center"
+        id="navBar"
+      >
+        <li class="nav-item mr-5" style="margin-left: -3vmax">
           <h2 id="appName">Pariksha</h2>
         </li>
-        <li class="nav-item mr-5">
-          <b> <h4 id="userNavName"></h4></b>
-        </li>
-        <button
-          class="btn btn-primary"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#demo"
-        >
-          &#9776;
-        </button>
       </ul>
     </nav>
 
@@ -93,10 +116,15 @@
           data-bs-dismiss="offcanvas"
         ></button>
       </div>
-      <div class="offcanvas-body">
+      <div class="offcanvas-body" id="register-links">
         <b>
-          <a href="../html/login.html" class="m-1 homwNavLink" id="login"
-            >Log in</a
+          <a href="../html/Home.html" class="m-2 homwNavLink" id="quiz_home"
+            >Home</a
+          ></b
+        >
+        <b>
+          <a href="../html/login.html" class="m-2 homwNavLink" id="login"
+            >Login</a
           ></b
         >
       </div>
@@ -172,6 +200,10 @@
               </div>
             </div>
           </form>
+          <div class="d-flex justify-content-center mt-3">
+            <p>Already have an account?</p>
+            <a class="ml-2" href="../html/login.html">Login</a>
+          </div>
         </div>
       </div>
     </div>
